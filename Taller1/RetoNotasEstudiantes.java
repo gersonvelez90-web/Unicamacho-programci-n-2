@@ -1,33 +1,30 @@
-import java.util.Locale;
 import java.util.Scanner;
 
 public class RetoNotasEstudiantes {
     public static void main(String[] args) {
-        // Locale.US para que las notas se escriban con punto decimal (ejemplo: 4.5)
-        Scanner sc = new Scanner(System.in).useLocale(Locale.US);
+        Scanner entrada = new Scanner(System.in);
 
         // a) Captura de estudiantes, materias y calificaciones
-        System.out.print("Ingrese el numero de estudiantes: ");
-        int estudiantes = sc.nextInt();
-        while (estudiantes <= 0) {
-            System.out.print("Debe ser mayor que 0. Ingrese el numero de estudiantes: ");
-            estudiantes = sc.nextInt();
-        }
+        int estudiantes = 0;
+        do {
+            System.out.print("Ingrese el numero de estudiantes (mayor que 0): ");
+            estudiantes = entrada.nextInt();
+        } while (estudiantes < 1);
 
-        System.out.print("Ingrese el numero de materias: ");
-        int materias = sc.nextInt();
-        while (materias <= 0) {
-            System.out.print("Debe ser mayor que 0. Ingrese el numero de materias: ");
-            materias = sc.nextInt();
-        }
+        int materias = 0;
+        do {
+            System.out.print("Ingrese el numero de materias (mayor que 0): ");
+            materias = entrada.nextInt();
+        } while (materias < 1);
 
         // Filas = estudiantes, columnas = materias
+        // Las notas decimales se escriben segun la configuracion del equipo (en espanol: 4,5)
         double[][] notas = new double[estudiantes][materias];
 
         for (int i = 0; i < estudiantes; i++) {
             for (int j = 0; j < materias; j++) {
                 System.out.print("Nota del estudiante " + (i + 1) + " en la materia " + (j + 1) + ": ");
-                notas[i][j] = sc.nextDouble();
+                notas[i][j] = entrada.nextDouble();
             }
         }
 
@@ -40,7 +37,7 @@ public class RetoNotasEstudiantes {
                 sumaEstudiante = sumaEstudiante + notas[i][j];
             }
             double promedioEstudiante = sumaEstudiante / materias;
-            System.out.printf(Locale.US, "Estudiante %d: %.2f%n", i + 1, promedioEstudiante);
+            System.out.println("Estudiante " + (i + 1) + ": " + promedioEstudiante);
         }
 
         // c) Materia con el promedio mas alto (se suma cada columna)
@@ -58,8 +55,7 @@ public class RetoNotasEstudiantes {
             }
         }
         System.out.println();
-        System.out.printf(Locale.US, "La materia con el promedio mas alto es la materia %d con %.2f%n",
-                materiaMayorPromedio + 1, mayorPromedioMateria);
+        System.out.println("La materia con el promedio mas alto es la materia " + (materiaMayorPromedio + 1) + " con " + mayorPromedioMateria);
 
         // d) Calificacion mas alta con su estudiante y su materia
         double notaMaxima = notas[0][0];
@@ -74,9 +70,6 @@ public class RetoNotasEstudiantes {
                 }
             }
         }
-        System.out.printf(Locale.US, "La calificacion mas alta es %.2f, del estudiante %d en la materia %d%n",
-                notaMaxima, estudianteMaximo + 1, materiaMaxima + 1);
-
-        sc.close();
+        System.out.println("La calificacion mas alta es " + notaMaxima + ", del estudiante " + (estudianteMaximo + 1) + " en la materia " + (materiaMaxima + 1));
     }
 }

@@ -2,20 +2,19 @@ import java.util.Scanner;
 
 public class Ejercicio4Vectores {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner entrada = new Scanner(System.in);
 
-        System.out.print("Ingrese la cantidad N de elementos del vector: ");
-        int n = sc.nextInt();
-        while (n <= 0) {
-            System.out.print("N debe ser mayor que 0. Ingrese N de nuevo: ");
-            n = sc.nextInt();
-        }
+        int n = 0;
+        do {
+            System.out.print("Ingrese la cantidad N de elementos del vector (mayor que 0): ");
+            n = entrada.nextInt();
+        } while (n < 1);
 
         int[] vector = new int[n];
 
         for (int i = 0; i < n; i++) {
             System.out.print("Ingrese el elemento [" + i + "]: ");
-            vector[i] = sc.nextInt();
+            vector[i] = entrada.nextInt();
         }
 
         int pares = 0;
@@ -32,7 +31,5 @@ public class Ejercicio4Vectores {
 
         System.out.println("Cantidad de pares: " + pares);
         System.out.println("Cantidad de impares: " + impares);
-
-        sc.close();
     }
 }

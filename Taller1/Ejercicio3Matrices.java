@@ -2,28 +2,26 @@ import java.util.Scanner;
 
 public class Ejercicio3Matrices {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner entrada = new Scanner(System.in);
 
-        System.out.print("Ingrese el numero de filas: ");
-        int filas = sc.nextInt();
-        while (filas <= 0) {
-            System.out.print("Las filas deben ser mayor que 0. Ingrese de nuevo: ");
-            filas = sc.nextInt();
-        }
+        int filas = 0;
+        do {
+            System.out.print("Ingrese el numero de filas (mayor que 0): ");
+            filas = entrada.nextInt();
+        } while (filas < 1);
 
-        System.out.print("Ingrese el numero de columnas: ");
-        int columnas = sc.nextInt();
-        while (columnas <= 0) {
-            System.out.print("Las columnas deben ser mayor que 0. Ingrese de nuevo: ");
-            columnas = sc.nextInt();
-        }
+        int columnas = 0;
+        do {
+            System.out.print("Ingrese el numero de columnas (mayor que 0): ");
+            columnas = entrada.nextInt();
+        } while (columnas < 1);
 
         int[][] matriz = new int[filas][columnas];
 
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
                 System.out.print("Ingrese el elemento [" + i + "][" + j + "]: ");
-                matriz[i][j] = sc.nextInt();
+                matriz[i][j] = entrada.nextInt();
             }
         }
 
@@ -44,7 +42,5 @@ public class Ejercicio3Matrices {
             }
             System.out.println("Suma de la columna " + j + ": " + sumaColumna);
         }
-
-        sc.close();
     }
 }
